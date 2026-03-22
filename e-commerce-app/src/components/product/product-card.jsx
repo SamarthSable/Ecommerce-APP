@@ -22,7 +22,7 @@ export default function ProductCard({ product, onAddToCartClick }) {
   function addToCartClicked() {
     onAddToCartClick({
       title: product.title,
-      id: product.id,
+      productId: product.id,
       price: product.price,
       ...attributes,
     });
