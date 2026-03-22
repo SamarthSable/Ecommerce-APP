@@ -1,13 +1,37 @@
 import React from "react";
 import ProductSize from "./ProductSize";
 import ProductColor from "./ProductColor";
+import QuantityCounter from "./QuantityCounter";
+import { useState } from "react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onAddToCartClick }) {
+  const [attributes, setAttributes] = useState({});
+
   function setSize(size) {
-    console.log(size);
+    setAttributes((prev) => ({ ...prev, size }));
   }
   function setColor(color) {
     console.log(color);
+    setAttributes((prev) => ({ ...prev, color }));
+  }
+
+  function setQuantity(quantity) {
+    setAttributes((prev) => ({ ...prev, quantity }));
+  }
+
+  function addToCartClicked() {
+    onAddToCartClick({
+      title: product.title,
+      id: product.id,
+      price: product.price,
+      ...attributes,
+    });
+    console.log({
+      title: product.title,
+      id: product.id,
+      price: product.price,
+      ...attributes,
+    });
   }
 
   return (
@@ -20,12 +44,15 @@ export default function ProductCard({ product }) {
         />
       </header>
       <h3 className="product-title truncate">{product.title}</h3>
-      <p className="product-description truncate-2">{product.description}</p>
+      <p title={product.description} className="product-description truncate-2">
+        {product.description}
+      </p>
       <p className="product-price">${product.price.toFixed(2)}</p>
       <ProductSize sizeList={product.size} onSizeSelect={setSize} />
       <ProductColor colorList={product.color} onColorSelect={setColor} />
+      <QuantityCounter onUpdate={setQuantity} />
       <footer>
-        <button>Add to Cart</button>
+        <button onClick={addToCartClicked}>Add to Cart</button>
       </footer>
     </article>
   );

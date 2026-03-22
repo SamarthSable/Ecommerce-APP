@@ -16,6 +16,14 @@
         box-shadow: 1px 1px 3px 2px lightslategray;
         border-radius: 8px;
 
+        button {
+            &.active {
+                border: 2px solid yellow;
+            }
+
+            background-color: black;
+        }
+
         .product-title {
             font-size: 1rem;
             font-weight: 500;
@@ -63,6 +71,20 @@
                 min-width: 24px;
                 padding: 8px;
                 font-size: 0.75rem;
+            }
+        }
+
+        .product-quantity {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                padding: 0;
+                height: 32px;
+                width: 32px;
+                font-size: 0.6rem;
             }
         }
     }
