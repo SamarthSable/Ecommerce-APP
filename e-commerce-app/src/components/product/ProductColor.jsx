@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function ProductColor({
   colorList,
-  onColorSelect,
+  onColorSelect = () => {},
   readOnly = false,
 }) {
   const [activeColor, setActiveColor] = useState("");
